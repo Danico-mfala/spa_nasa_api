@@ -6,8 +6,9 @@ module.exports = {
       colors: {
         neutralSilver: "#F5F7FA",
         neutralDGrey: "#4D4D4D",
-        neutralPrimary: "#4CAF4F",
+        brandPrimary: "#4CAF4F",
         neutralGrey: "#717171",
+        gray900: "#18191F",
       },
     },
   },
