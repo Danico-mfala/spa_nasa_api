@@ -1,0 +1,16 @@
+.logo-carousel .control-arrow,
+.logo-carousel .carousel-status {
+    display: none;
+}
+
+.logo-carousel .slide {
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+.logo-carousel .logo-slide img {
+    max-width: 20px;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+}
