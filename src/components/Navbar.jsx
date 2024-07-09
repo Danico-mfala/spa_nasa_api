@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import logo from "../assets/image/logo.png";
+import SearchResults from "./SearchResults";
 
 // react icons
 import { FaTimes, FaBars } from "react-icons/fa";
@@ -7,6 +8,8 @@ import { FaTimes, FaBars } from "react-icons/fa";
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
 
   // Toggle menu
   const toggleMenu = () => {
@@ -32,9 +35,36 @@ const Navbar = () => {
     { link: "Home", path: "home" },
     { link: "About", path: "about" },
     { link: "Services", path: "services" },
-    { link: "Portfolio", path: "portfolio" },
+    { link: "Gallery", path: "gallery" },
     { link: "Contact", path: "contact" },
   ];
+
+  // Predefined search data
+  const data = [
+    "Astronomy Picture of the Day",
+    "Mars Rover Photos",
+    "NASA Missions",
+    "International Space Station",
+    "Hubble Telescope",
+  ];
+
+  // Handle search query change
+  const handleSearchChange = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
+  // Handle search form submission
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    if (searchQuery) {
+      const results = data.filter((item) =>
+        item.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+      setSearchResults(results);
+    } else {
+      setSearchResults([]);
+    }
+  };
 
   return (
     <header
@@ -77,17 +107,23 @@ const Navbar = () => {
             </button>
           </div>
 
-          {/* Button for large screen */}
-          <div className="space-x-12 hidden lg:flex items-center">
-            <a
-              href="/"
-              className="hidden lg:flex items-center text-brandPrimary hover:text-gray900"
-            >
-              Login
-            </a>
-            <button className="bg-brandPrimary text-white py-2 px-4 transition-all duration-300 rounded hover:bg-neutralDGrey">
-              Sign up
-            </button>
+          {/* Search bar for large screen */}
+          <div className="hidden lg:flex items-center space-x-12">
+            <form onSubmit={handleSearchSubmit} className="relative">
+              <input
+                type="text"
+                placeholder="Search..."
+                value={searchQuery}
+                onChange={handleSearchChange}
+                className="py-2 pl-4 pr-10 rounded bg-gray-200 text-gray-900 focus:outline-none focus:bg-white focus:shadow-md transition-all duration-300"
+              />
+              <button
+                type="submit"
+                className="absolute right-0 top-0 mt-2 mr-2 text-gray-500 hover:text-gray-700 focus:outline-none"
+              >
+                🔍
+              </button>
+            </form>
           </div>
         </nav>
       </div>
@@ -107,6 +143,12 @@ const Navbar = () => {
             ))}
           </div>
         </ul>
+      )}
+      {/* Search results */}
+      {searchResults.length > 0 && (
+        <div className="container mx-auto mt-4">
+          <SearchResults results={searchResults} />
+        </div>
       )}
     </header>
   );

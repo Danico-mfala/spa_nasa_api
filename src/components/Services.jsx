@@ -31,9 +31,24 @@ const Services = () => {
       title: "Membership Organisations",
       description:
         "Our membership software provides full automation of membership renewals and PaymentResponse",
-      image: "https://cdn-icons-png.freepik.com/512/4111/4111882.png",
+      image: "https://res.cloudinary.com/dzqjxgjxj/image",
+    },
+    {
+      id: 5,
+      title: "Membership Organisations",
+      description:
+        "Our membership software provides full automation of membership renewals and PaymentResponse",
+      image: "https://res.cloudinary.com/dzqjxgjxj/image",
+    },
+    {
+      id: 6,
+      title: "Membership Organisations",
+      description:
+        "Our membership software provides full automation of membership renewals and PaymentResponse",
+      image: "https://res.cloudinary.com/dzqjxgjxj/image",
     },
   ];
+
   return (
     <div className="md:px-14 px-4 py-16 max-w-screen-2xl mx-auto">
       <div className="text-center my-8">
@@ -56,44 +71,43 @@ const Services = () => {
           emulateTouch
           className="gap-12"
         >
-          <div className="logo-container">
+          <div className="logo-container flex items-center justify-center">
             <img
               src="/src/assets/logo/logo_1.png"
               alt="Client Logo 1"
-              width={100}
+              className="h-20"
             />
           </div>
-          <div className="logo-container">
+          <div className="logo-container flex items-center justify-center">
             <img
               src="/src/assets/logo/logo_2.png"
               alt="Client Logo 2"
-              width={100}
+              className="h-20"
             />
           </div>
-          <div className="logo-container">
+          <div className="logo-container flex items-center justify-center">
             <img
               src="/src/assets/logo/logo_3.png"
               alt="Client Logo 3"
-              width={100}
+              className="h-20"
             />
           </div>
-          <div className="logo-container">
+          <div className="logo-container flex items-center justify-center">
             <img
               src="/src/assets/logo/logo_4.png"
               alt="Client Logo 4"
-              width={100}
+              className="h-20"
             />
           </div>
         </Carousel>
       </div>
-      <div className="mt-20 md:-1/2 mx-auto text-center">
-        <h2 className="text-4xl mb-3 font-semilbold text-neutralGrey">
+      <div className="mt-20 md:w-1/2 mx-auto text-center">
+        <h2 className="text-4xl mb-3 font-semibold text-neutralDGrey">
           Manage your entire community in a single system
         </h2>
-        <p className="text-neutralGrey">who is Nextcent suitable for ?</p>
+        <p className="text-neutralGrey">Who is Nextcent suitable for?</p>
       </div>
-
-      {/* cards */}
+      {/* Cards */}
       <div className="mt-14 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 md:w-11/12 mx-auto gap-12">
         {services.map((service) => (
           <div

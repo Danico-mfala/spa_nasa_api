@@ -1,5 +1,6 @@
 import "./App.css";
 import About from "./components/About";
+import Footer from "./components/Footer";
 import Gallery from "./components/Gallery";
 import Home from "./components/Home";
 import Navbar from "./components/Navbar";
@@ -13,6 +14,7 @@ function App() {
       <Services />
       <About />
       <Gallery />
+      <Footer />
     </>
   );
 }
