@@ -1,64 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaTimes, FaChevronLeft, FaChevronRight } from "react-icons/fa";
-
-const images = [
-  {
-    src: "https://cdn.britannica.com/57/111757-050-F3229E99/image-Magellanic-Cloud-nebula-Cerro-Tololo-Inter-American.jpg",
-    caption: "Image 1",
-    category: "nature",
-    size: "large",
-  },
-  {
-    src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTm_rZL8obSMf3yubEah_hi72hZqKIseRrJw&s",
-    caption: "Image 2",
-    category: "city",
-    size: "small",
-  },
-  {
-    src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTY52c5RLn8KVOB-JVorvpbESEDIXhe-TVNQ&s",
-    caption: "Image 3",
-    category: "nature",
-    size: "medium",
-  },
-  {
-    src: "https://cdn.britannica.com/57/111757-050-F3229E99/image-Magellanic-Cloud-nebula-Cerro-Tololo-Inter-American.jpg",
-    caption: "Image 4",
-    category: "city",
-    size: "large",
-  },
-  {
-    src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3VBVKCqiHUdP7rljhJM0zWJ03MA13b9MxGg&s",
-    caption: "Image 5",
-    category: "people",
-    size: "medium",
-  },
-  {
-    src: "https://via.placeholder.com/600/56a8c2",
-    caption: "Image 6",
-    category: "people",
-    size: "small",
-  },
-  {
-    src: "https://via.placeholder.com/600/b0f7cc",
-    caption: "Image 7",
-    category: "nature",
-    size: "large",
-  },
-  {
-    src: "https://via.placeholder.com/600/54176f",
-    caption: "Image 8",
-    category: "city",
-    size: "medium",
-  },
-];
 
 const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedCategory, setSelectedCategory] = useState("all");
+  const [apodImage, setApodImage] = useState(null); // State to store APOD data
+  const [error, setError] = useState(null); // State to handle errors
+
+  useEffect(() => {
+    const fetchAPOD = async () => {
+      const API_KEY = process.env.REACT_APP_NASA_API_KEY;
+      const today = new Date().toISOString().slice(0, 10); // Get today's date
+
+      try {
+        const response = await fetch(
+          `https://api.nasa.gov/planetary/apod?api_key=${API_KEY}&date=${today}`
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch APOD data");
+        }
+        const data = await response.json();
+        setApodImage(data);
+      } catch (error) {
+        console.error("Error fetching APOD data:", error);
+        setError(error.message);
+      }
+    };
+
+    fetchAPOD();
+  }, []);
 
   const handleImageClick = (index) => {
-    setSelectedImage(images[index]);
+    setSelectedImage(filteredImages[index]);
     setCurrentIndex(index);
   };
 
@@ -67,14 +41,15 @@ const Gallery = () => {
   };
 
   const nextImage = () => {
-    const newIndex = (currentIndex + 1) % images.length;
-    setSelectedImage(images[newIndex]);
+    const newIndex = (currentIndex + 1) % filteredImages.length;
+    setSelectedImage(filteredImages[newIndex]);
     setCurrentIndex(newIndex);
   };
 
   const prevImage = () => {
-    const newIndex = (currentIndex - 1 + images.length) % images.length;
-    setSelectedImage(images[newIndex]);
+    const newIndex =
+      (currentIndex - 1 + filteredImages.length) % filteredImages.length;
+    setSelectedImage(filteredImages[newIndex]);
     setCurrentIndex(newIndex);
   };
 
@@ -97,7 +72,7 @@ const Gallery = () => {
             onClick={() => filterImages(category)}
             className={`px-4 py-2 mx-2 rounded ${
               selectedCategory === category
-                ? "bg-blue-500 text-white"
+                ? "bg-brandPrimary text-white"
                 : "bg-gray-200 text-gray-700"
             }`}
           >
@@ -106,6 +81,23 @@ const Gallery = () => {
         ))}
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        {/* Display APOD Image if available */}
+        {apodImage && (
+          <div className="relative group col-span-2 row-span-2">
+            <img
+              src={apodImage.hdurl || apodImage.url}
+              alt={`APOD - ${apodImage.title}`}
+              className="w-full h-full object-cover cursor-pointer transform transition duration-500 hover:scale-105"
+              onClick={() => setSelectedImage(apodImage)}
+              loading="lazy"
+            />
+            <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              {apodImage.title}
+            </div>
+          </div>
+        )}
+
+        {/* Display other gallery images */}
         {filteredImages.map((image, index) => (
           <div
             key={index}
@@ -131,6 +123,7 @@ const Gallery = () => {
         ))}
       </div>
 
+      {/* Lightbox for selected image */}
       {selectedImage && (
         <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 transition-opacity duration-500">
           <div className="relative">
@@ -161,6 +154,13 @@ const Gallery = () => {
               <FaChevronRight />
             </button>
           </div>
+        </div>
+      )}
+
+      {/* Error message display */}
+      {error && (
+        <div className="text-red-500 text-center mt-4">
+          Failed to fetch APOD data: {error}
         </div>
       )}
     </div>
