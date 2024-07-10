@@ -3,7 +3,7 @@ import aboutImg from "../assets/image/about.jpg";
 import "../About.css";
 
 const api_key: string = import.meta.env.VITE_NASA_API_KEY as string;
-const statsEndpoint: string = `https://api.nasa.gov/planetary/apod?api_key=${api_key}`;
+
 
 interface ApodData {
   title: string;
