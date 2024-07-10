@@ -2,7 +2,7 @@ import React from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import banner_1 from "../assets/image/banner_1.jpg"; // Replace with actual space images
-import banner_2 from "../assets/image/banner_1.jpg"; // Replace with actual space images
+import banner_2 from "../assets/image/banner_2.jpg"; // Replace with actual space images
 import {
   FaRocket,
   FaSatellite,
@@ -35,8 +35,8 @@ const Home = () => {
   ];
 
   return (
-    <div className="bg-black min-h-screen flex items-center justify-center text-white relative overflow-hidden">
-      <div className="px-4 lg:px-14 max-w-screen-2xl mx-auto w-full relative">
+    <div className="bg-[#f1eeee] min-h-screen  bg-home-bg bg-cover bg-center flex items-center justify-center text-white relative overflow-hidden">
+      <div className=" px-4 lg:px-14 max-w-screen-2xl mx-auto h-100 relative">
         <Carousel
           showThumbs={false}
           showStatus={false}
@@ -80,7 +80,7 @@ const Home = () => {
                   <div className="md:w-1/2 text-center md:text-left">
                     <h1 className="text-5xl font-extrabold mb-4 leading-tight animate-fade-in">
                       {slide.title}
-                      <span className="text-blue-500 block text-3xl mt-4">
+                      <span className="text-brandPrimary block text-3xl mt-4">
                         {slide.subtitle}
                       </span>
                     </h1>
@@ -192,7 +192,7 @@ const Home = () => {
                   <div className="md:w-1/2 text-center md:text-left">
                     <h1 className="text-5xl font-extrabold mb-4 leading-tight animate-fade-in">
                       {slide.title}
-                      <span className="text-blue-500 block text-3xl mt-4">
+                      <span className="text-brandPrimary block text-3xl mt-4">
                         {slide.subtitle}
                       </span>
                     </h1>

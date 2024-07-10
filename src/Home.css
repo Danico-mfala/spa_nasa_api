@@ -1,3 +1,11 @@
+.bg-home-bg {
+    background-image: url("./assets/image/bg.png");
+    /* Replace with your actual path */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
 .floating-icons {
     position: absolute;
     top: 0;
