@@ -1,8 +1,8 @@
 import React from "react";
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
-import banner_1 from "../assets/image/banner_1.jpg";
-import banner_2 from "../assets/image/banner_2.jpg"; // Add more images as needed
+import banner_1 from "../assets/image/banner_1.jpg"; // Replace with actual space images
+import banner_2 from "../assets/image/banner_1.jpg"; // Replace with actual space images
 import {
   FaRocket,
   FaSatellite,
@@ -12,37 +12,31 @@ import {
   FaArrowLeft,
   FaArrowRight,
 } from "react-icons/fa";
-import "../assets/styles/Home.css"; // Import the CSS file for additional styling
+import "../Home.css";
 
 const Home = () => {
   const slides = [
     {
       id: 1,
-      title: "Discover the Galaxy",
-      subtitle: "From 9 years of exploration",
+      title: "Explore the Cosmos",
+      subtitle:
+        "Discover stunning images and captivating stories with SpaceWonders. Explore the universe through NASA's Astronomy.",
       image: banner_1,
       textFirst: true,
     },
     {
       id: 2,
-      title: "Explore the Universe",
-      subtitle: "Unveiling the mysteries of space",
+      title: "Capture the Cosmos",
+      subtitle:
+        "Immerse yourself in the universe's wonders with SpaceWonders and journey through galaxies, stars, and beyond.",
       image: banner_2,
       textFirst: false,
     },
-    // Add more slides as needed
   ];
 
   return (
-    <div className="bg-neutralSilver min-h-screen flex items-center justify-center text-white relative overflow-hidden">
-      <div className="floating-icons">
-        <FaRocket className="floating-icon icon-rocket" />
-        <FaSatellite className="floating-icon icon-satellite" />
-        <FaMeteor className="floating-icon icon-meteor" />
-        <FaSpaceShuttle className="floating-icon icon-shuttle" />
-        <FaUserAstronaut className="floating-icon icon-astronaut" />
-      </div>
-      <div className="px-4 lg:px-14 max-w-screen-2xl mx-auto w-full">
+    <div className="bg-black min-h-screen flex items-center justify-center text-white relative overflow-hidden">
+      <div className="px-4 lg:px-14 max-w-screen-2xl mx-auto w-full relative">
         <Carousel
           showThumbs={false}
           showStatus={false}
@@ -78,31 +72,65 @@ const Home = () => {
           {slides.map((slide) => (
             <div
               key={slide.id}
-              className="flex flex-col md:flex-row items-center justify-between gap-12"
+              className="relative flex flex-col md:flex-row items-center justify-between gap-12 p-4" // Add padding here
             >
               {slide.textFirst ? (
                 <>
                   {/* Hero section text */}
                   <div className="md:w-1/2 text-center md:text-left">
-                    <h1 className="text-5xl font-semibold mb-4 leading-snug animate-fade-in">
+                    <h1 className="text-5xl font-extrabold mb-4 leading-tight animate-fade-in">
                       {slide.title}
-                      <span className="text-brandPrimary block">
+                      <span className="text-blue-500 block text-3xl mt-4">
                         {slide.subtitle}
                       </span>
                     </h1>
                     <p className="text-lg mb-6">
-                      Join us on a journey through the vastness of space and
-                      uncover the secrets of the universe.
+                      Dive into the wonders of the cosmos daily with
+                      SpaceWonders and NASA's Astronomy Picture of the Day
                     </p>
-                    <a
-                      href="#explore"
-                      className="bg-brandPrimary text-white py-2 px-4 rounded-lg inline-block hover:bg-brandPrimaryDark transition duration-300"
-                    >
-                      Explore Now
-                    </a>
+                  </div>
+                  {/* Floating icons */}
+                  <div className="absolute top-0 left-0 right-0 bottom-0 pointer-events-none z-10">
+                    <div className="floating-icons">
+                      <FaRocket
+                        className="floating-icon icon-rocket"
+                        style={{
+                          top: `${Math.random() * 100}vh`,
+                          left: `${Math.random() * 100}vw`,
+                        }}
+                      />
+                      <FaSatellite
+                        className="floating-icon icon-satellite"
+                        style={{
+                          top: `${Math.random() * 100}vh`,
+                          left: `${Math.random() * 100}vw`,
+                        }}
+                      />
+                      <FaMeteor
+                        className="floating-icon icon-meteor"
+                        style={{
+                          top: `${Math.random() * 100}vh`,
+                          left: `${Math.random() * 100}vw`,
+                        }}
+                      />
+                      <FaSpaceShuttle
+                        className="floating-icon icon-shuttle"
+                        style={{
+                          top: `${Math.random() * 100}vh`,
+                          left: `${Math.random() * 100}vw`,
+                        }}
+                      />
+                      <FaUserAstronaut
+                        className="floating-icon icon-astronaut"
+                        style={{
+                          top: `${Math.random() * 100}vh`,
+                          left: `${Math.random() * 100}vw`,
+                        }}
+                      />
+                    </div>
                   </div>
                   {/* Hero section image */}
-                  <div className="md:w-1/2">
+                  <div className="relative hero-image md:w-1/2">
                     <img
                       src={slide.image}
                       alt={slide.title}
@@ -113,31 +141,65 @@ const Home = () => {
               ) : (
                 <>
                   {/* Hero section image */}
-                  <div className="md:w-1/2">
+                  <div className="relative hero-image md:w-1/2">
                     <img
                       src={slide.image}
                       alt={slide.title}
                       className="rounded-lg shadow-lg w-full md:w-2/3"
                     />
                   </div>
+                  {/* Floating icons */}
+                  <div className="absolute top-0 left-0 right-0 bottom-0 pointer-events-none z-10">
+                    <div className="floating-icons">
+                      <FaRocket
+                        className="floating-icon icon-rocket"
+                        style={{
+                          top: `${Math.random() * 100}vh`,
+                          left: `${Math.random() * 100}vw`,
+                        }}
+                      />
+                      <FaSatellite
+                        className="floating-icon icon-satellite"
+                        style={{
+                          top: `${Math.random() * 100}vh`,
+                          left: `${Math.random() * 100}vw`,
+                        }}
+                      />
+                      <FaMeteor
+                        className="floating-icon icon-meteor"
+                        style={{
+                          top: `${Math.random() * 100}vh`,
+                          left: `${Math.random() * 100}vw`,
+                        }}
+                      />
+                      <FaSpaceShuttle
+                        className="floating-icon icon-shuttle"
+                        style={{
+                          top: `${Math.random() * 100}vh`,
+                          left: `${Math.random() * 100}vw`,
+                        }}
+                      />
+                      <FaUserAstronaut
+                        className="floating-icon icon-astronaut"
+                        style={{
+                          top: `${Math.random() * 100}vh`,
+                          left: `${Math.random() * 100}vw`,
+                        }}
+                      />
+                    </div>
+                  </div>
                   {/* Hero section text */}
                   <div className="md:w-1/2 text-center md:text-left">
-                    <h1 className="text-5xl font-semibold mb-4 leading-snug animate-fade-in">
+                    <h1 className="text-5xl font-extrabold mb-4 leading-tight animate-fade-in">
                       {slide.title}
-                      <span className="text-brandPrimary block">
+                      <span className="text-blue-500 block text-3xl mt-4">
                         {slide.subtitle}
                       </span>
                     </h1>
                     <p className="text-lg mb-6">
-                      Join us on a journey through the vastness of space and
-                      uncover the secrets of the universe.
+                      Explore awe-inspiring images and stories from NASA's
+                      Astronomy Picture of the Day with SpaceWonders.
                     </p>
-                    <a
-                      href="#explore"
-                      className="bg-brandPrimary text-white py-2 px-4 rounded-lg inline-block hover:bg-brandPrimaryDark transition duration-300"
-                    >
-                      Explore Now
-                    </a>
                   </div>
                 </>
               )}

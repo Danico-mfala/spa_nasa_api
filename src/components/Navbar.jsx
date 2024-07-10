@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import logo from "../assets/image/logo.png";
 import SearchResults from "./SearchResults";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 // react icons
 import { FaTimes, FaBars } from "react-icons/fa";
@@ -10,6 +12,7 @@ const Navbar = () => {
   const [isSticky, setIsSticky] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const [selectedDate, setSelectedDate] = useState(new Date());
 
   // Toggle menu
   const toggleMenu = () => {
@@ -32,10 +35,11 @@ const Navbar = () => {
 
   // Navigation items array
   const navItems = [
-    { link: "Home", path: "home" },
+    { link: "Home", path: "" },
     { link: "About", path: "about" },
-    { link: "Services", path: "services" },
+    { link: "Planet", path: "planet" },
     { link: "Gallery", path: "gallery" },
+    { link: "Faq", path: "faq" },
     { link: "Contact", path: "contact" },
   ];
 
@@ -66,6 +70,31 @@ const Navbar = () => {
     }
   };
 
+  // Handle date change
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+  };
+
+  // Fetch APOD data for selected date
+  const fetchApodData = async () => {
+    const formattedDate = selectedDate.toISOString().split("T")[0];
+    const apiKey = "BRFVdbnVnXohe9akwu8LaIhsEZWhZnj7cFuGJb77";
+    const apiUrl = `https://api.nasa.gov/planetary/apod?api_key=${apiKey}&date=${formattedDate}`;
+
+    try {
+      const response = await fetch(apiUrl);
+      if (!response.ok) {
+        throw new Error("Failed to fetch APOD data");
+      }
+      const data = await response.json();
+      console.log(data); // Display fetched APOD data
+      // Handle displaying the fetched data in your UI
+    } catch (error) {
+      console.error("Error fetching APOD data:", error);
+      // Handle error state in UI
+    }
+  };
+
   return (
     <header
       className={`w-full ${
@@ -79,7 +108,7 @@ const Navbar = () => {
             href="#"
           >
             <img src={logo} alt="logo" className="w-10 inline-block" />
-            <span className="text-[#263238]">Nasa Space</span>
+            <span className="text-[#263238]">SpaceWonders</span>
           </a>
           {/* Navigation items for large devices */}
           <ul className="md:flex space-x-12 hidden">
@@ -107,23 +136,20 @@ const Navbar = () => {
             </button>
           </div>
 
-          {/* Search bar for large screen */}
+          {/* Date picker or text input for selecting date */}
           <div className="hidden lg:flex items-center space-x-12">
-            <form onSubmit={handleSearchSubmit} className="relative">
-              <input
-                type="text"
-                placeholder="Search..."
-                value={searchQuery}
-                onChange={handleSearchChange}
-                className="py-2 pl-4 pr-10 rounded bg-gray-200 text-gray-900 focus:outline-none focus:bg-white focus:shadow-md transition-all duration-300"
-              />
-              <button
-                type="submit"
-                className="absolute right-0 top-0 mt-2 mr-2 text-gray-500 hover:text-gray-700 focus:outline-none"
-              >
-                🔍
-              </button>
-            </form>
+            <DatePicker
+              selected={selectedDate}
+              onChange={handleDateChange}
+              dateFormat="yyyy-MM-dd"
+              className="py-2 pl-4 pr-10 rounded bg-gray-200 text-gray-900 focus:outline-none focus:bg-white focus:shadow-md transition-all duration-300"
+            />
+            <button
+              onClick={fetchApodData}
+              className="bg-gray-800 text-white py-2 px-4 rounded-lg transition duration-300 hover:bg-gray-900"
+            >
+              Fetch APOD
+            </button>
           </div>
         </nav>
       </div>

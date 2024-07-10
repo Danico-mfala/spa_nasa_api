@@ -9,6 +9,8 @@ const Gallery = () => {
   const [loading, setLoading] = useState(false);
   const [showLoadMore, setShowLoadMore] = useState(false);
 
+  const api_key = import.meta.env.VITE_NASA_API_KEY;
+
   useEffect(() => {
     fetchRandomNASAImages();
   }, []);
@@ -18,7 +20,9 @@ const Gallery = () => {
       setLoading(true);
       const dates = generateRandomDates(6); // Generate 6 random dates
       const fetchRequests = dates.map((date) =>
-        fetch(`https://api.nasa.gov/planetary/apod?api_key=7&date=${date}`)
+        fetch(
+          `https://api.nasa.gov/planetary/apod?api_key=${api_key}&date=${date}`
+        )
       );
       const responses = await Promise.all(fetchRequests);
       const data = await Promise.all(
@@ -80,7 +84,7 @@ const Gallery = () => {
   };
 
   return (
-    <div className="px-4 lg:px-14 max-w-screen-2xl mx-auto my-8">
+    <div className="px-4 lg:px-14 max-w-screen-2xl mx-auto my-8" id="gallery">
       <h2 className="text-4xl text-neutralDGrey font-semibold mb-8 items-center">
         Gallery
       </h2>
@@ -97,7 +101,7 @@ const Gallery = () => {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
         {images.map((image, index) => (
-          <div key={index} className={`relative group`}>
+          <div key={index} className="relative group">
             <img
               src={image.url}
               alt={`APOD Image ${index + 1}`}

@@ -1,0 +1,7 @@
+.parallax {
+    transition: transform 0.2s ease-in-out;
+}
+
+.parallax:hover {
+    transform: scale(1.05);
+}

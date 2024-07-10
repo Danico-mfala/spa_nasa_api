@@ -4,13 +4,14 @@ import { FaFacebookF, FaTwitter, FaLinkedinIn, FaGithub } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-white py-10">
+    <footer className="bg-gray-900 text-white py-10" id="contact">
       <div className="container mx-auto px-4">
         <div className="md:flex md:justify-between items-center md:px-12 sm:px-8 px-4">
           <h1 className="lg:text-4xl text-3xl md:mb-0 mb-6 lg:leading-normal font-semibold md:w-2/5">
-            <span className="text-brandPrimary">Free</span> until you're ready
-            to launch
+            <span className="text-brandPrimary">Reach Out</span> until you're
+            ready
           </h1>
+          <p></p>
           <div>
             <input
               type="text"
@@ -24,7 +25,10 @@ const Footer = () => {
         </div>
         <div className="flex flex-col md:flex-row justify-between items-center mt-10 border-t border-gray-700 pt-6">
           <p className="text-gray-400 mb-4 md:mb-0">
-            &copy; {new Date().getFullYear()} Created by Dan Mfala
+            &copy; {new Date().getFullYear()} Created by{" "}
+            <a href="" className=" hover:text-brandPrimary">
+              Danico Mfala
+            </a>
           </p>
           <div className="flex space-x-4">
             <a
@@ -34,7 +38,7 @@ const Footer = () => {
               <FaFacebookF />
             </a>
             <a
-              href="https://twitter.com"
+              href="https://x.com/mfaladan"
               className="text-gray-400 hover:text-white"
             >
               <FaTwitter />
