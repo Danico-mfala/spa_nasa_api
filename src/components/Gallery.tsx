@@ -1,15 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { FaTimes, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
-const Gallery = () => {
-  const [images, setImages] = useState([]);
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [showLoadMore, setShowLoadMore] = useState(false);
+interface NASAImage {
+  url: string;
+  title: string;
+  explanation: string;
+  date: string;
+}
 
-  const api_key = import.meta.env.VITE_NASA_API_KEY;
+const Gallery: React.FC = () => {
+  const [images, setImages] = useState<NASAImage[]>([]);
+  const [selectedImage, setSelectedImage] = useState<NASAImage | null>(null);
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const [error, setError] = useState<string | null>(null); // Explicitly typing error as string | null
+  const [loading, setLoading] = useState<boolean>(false);
+  const [showLoadMore, setShowLoadMore] = useState<boolean>(false);
+
+  const api_key = import.meta.env.VITE_NASA_API_KEY as string;
 
   useEffect(() => {
     fetchRandomNASAImages();
@@ -30,18 +37,18 @@ const Gallery = () => {
       );
       setImages((prevImages) => [
         ...prevImages,
-        ...data.filter((image) => !image.code),
+        ...data.filter((image: any) => !image.code && image.url) // Filter out images without a valid URL
       ]);
       setLoading(false);
       setShowLoadMore(true);
     } catch (error) {
-      setError(error.message);
+      setError(error.message as string); // Cast error.message to string
       setLoading(false);
     }
   };
 
-  const generateRandomDates = (count) => {
-    const dates = [];
+  const generateRandomDates = (count: number): string[] => {
+    const dates: string[] = [];
     for (let i = 0; i < count; i++) {
       const randomDate = getRandomDate();
       dates.push(randomDate);
@@ -49,7 +56,7 @@ const Gallery = () => {
     return dates;
   };
 
-  const getRandomDate = () => {
+  const getRandomDate = (): string => {
     const start = new Date(1995, 5, 16); // APOD started on June 16, 1995
     const end = new Date();
     const randomDate = new Date(
@@ -58,7 +65,7 @@ const Gallery = () => {
     return randomDate.toISOString().split("T")[0];
   };
 
-  const handleImageClick = (index) => {
+  const handleImageClick = (index: number) => {
     setSelectedImage(images[index]);
     setCurrentIndex(index);
   };
@@ -102,13 +109,19 @@ const Gallery = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
         {images.map((image, index) => (
           <div key={index} className="relative group">
-            <img
-              src={image.url}
-              alt={`APOD Image ${index + 1}`}
-              className="w-full h-full object-cover cursor-pointer transform transition duration-500 hover:scale-105"
-              onClick={() => handleImageClick(index)}
-              loading="lazy"
-            />
+            {image.url ? (
+              <img
+                src={image.url}
+                alt={`APOD Image ${index + 1}`}
+                className="w-full h-full object-cover cursor-pointer transform transition duration-500 hover:scale-105"
+                onClick={() => handleImageClick(index)}
+                loading="lazy"
+              />
+            ) : (
+              <div className="w-full h-full bg-gray-200 flex items-center justify-center">
+                <p className="text-gray-600">No Image Available</p>
+              </div>
+            )}
             <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               {image.title}
             </div>
@@ -126,11 +139,17 @@ const Gallery = () => {
               <FaTimes />
             </button>
             <div className="w-full md:w-1/2 p-4">
-              <img
-                src={selectedImage.url}
-                alt="Selected"
-                className="w-full h-auto rounded-lg"
-              />
+              {selectedImage.url ? (
+                <img
+                  src={selectedImage.url}
+                  alt="Selected"
+                  className="w-full h-auto rounded-lg"
+                />
+              ) : (
+                <div className="w-full h-full bg-gray-200 flex items-center justify-center">
+                  <p className="text-gray-600">No Image Available</p>
+                </div>
+              )}
             </div>
             <div className="w-full md:w-1/2 p-4 text-black">
               <h3 className="text-xl font-semibold mb-2 text-brandPrimary">

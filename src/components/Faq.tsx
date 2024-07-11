@@ -17,7 +17,7 @@ const FAQ = () => {
           throw new Error("Failed to fetch FAQ");
         }
         const data = await response.json();
-        const faqItems = data.map((item) => ({
+        const faqItems = data.map((item: { date: any; explanation: any; }) => ({
           id: item.date,
           question: `What is the Astronomy Picture of the Day on ${item.date}?`,
           answer: item.explanation,
@@ -35,7 +35,7 @@ const FAQ = () => {
     fetchFAQ();
   }, []);
 
-  const handleToggle = (id) => {
+  const handleToggle = (id: any) => {
     setFaqData((prevData) =>
       prevData.map((item) =>
         item.id === id

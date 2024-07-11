@@ -4,17 +4,23 @@ import { Carousel } from "react-responsive-carousel";
 import axios from "axios";
 import "../Planet.css";
 
-const api_key = import.meta.env.VITE_NASA_API_KEY;
+const api_key: string = import.meta.env.VITE_NASA_API_KEY as string;
 
-const Planet = () => {
-  const [planets, setPlanets] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
+interface PlanetData {
+  url: string;
+  title: string;
+}
+
+const Planet: React.FC = () => {
+  const [planets, setPlanets] = useState<PlanetData[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<boolean>(false);
+  const [flippedIndex, setFlippedIndex] = useState<number | null>(null);
 
   useEffect(() => {
     const fetchPlanets = async () => {
       try {
-        const response = await axios.get(
+        const response = await axios.get<PlanetData[]>(
           `https://api.nasa.gov/planetary/apod?api_key=${api_key}&count=6`
         );
         setPlanets(response.data);
@@ -29,12 +35,10 @@ const Planet = () => {
     fetchPlanets();
   }, []);
 
-  // State to track flipped state of each card
-  const [flippedIndex, setFlippedIndex] = useState(null);
-
-  // Toggle flip state
-  const handleCardFlip = (index) => {
-    setFlippedIndex(index === flippedIndex ? null : index);
+  const handleCardFlip = (index: number) => {
+    setFlippedIndex((prevState) =>
+      prevState === index ? null : index
+    );
   };
 
   return (
@@ -60,7 +64,6 @@ const Planet = () => {
       )}
       {!loading && !error && (
         <>
-          {/* Planets carousel */}
           <div className="my-12">
             <Carousel
               showThumbs={false}

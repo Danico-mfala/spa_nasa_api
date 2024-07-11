@@ -2,7 +2,7 @@ import React from "react";
 import { IoMdSend } from "react-icons/io";
 import { FaFacebookF, FaTwitter, FaLinkedinIn, FaGithub } from "react-icons/fa";
 
-const Footer = () => {
+const Footer: React.FC = () => {
   return (
     <footer className="bg-gray-900 text-white py-10" id="contact">
       <div className="container mx-auto px-4">
@@ -11,7 +11,6 @@ const Footer = () => {
             <span className="text-brandPrimary">Reach Out</span> until you're
             ready
           </h1>
-          <p></p>
           <div>
             <input
               type="text"
@@ -26,7 +25,7 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-center mt-10 border-t border-gray-700 pt-6">
           <p className="text-gray-400 mb-4 md:mb-0">
             &copy; {new Date().getFullYear()} Created by{" "}
-            <a href="" className=" hover:text-brandPrimary">
+            <a href="" className="hover:text-brandPrimary">
               Danico Mfala
             </a>
           </p>
