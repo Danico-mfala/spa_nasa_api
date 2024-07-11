@@ -12,7 +12,7 @@ const Gallery: React.FC = () => {
   const [images, setImages] = useState<NASAImage[]>([]);
   const [selectedImage, setSelectedImage] = useState<NASAImage | null>(null);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
-  const [error, setError] = useState<string | null>(null); // Explicitly typing error as string | null
+  const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [showLoadMore, setShowLoadMore] = useState<boolean>(false);
 
@@ -35,14 +35,19 @@ const Gallery: React.FC = () => {
       const data = await Promise.all(
         responses.map((response) => response.json())
       );
-      setImages((prevImages) => [
-        ...prevImages,
-        ...data.filter((image: any) => !image.code && image.url) // Filter out images without a valid URL
-      ]);
+      const filteredImages = data
+        .filter((image: any) => !image.code && image.url) // Filter out images without a valid URL
+        .map((image: any) => ({
+          url: image.url,
+          title: image.title,
+          explanation: image.explanation,
+          date: image.date,
+        }));
+      setImages((prevImages) => [...prevImages, ...filteredImages]);
       setLoading(false);
       setShowLoadMore(true);
     } catch (error) {
-      setError(error.message as string); // Cast error.message to string
+      setError((error as Error).message);
       setLoading(false);
     }
   };
@@ -57,7 +62,7 @@ const Gallery: React.FC = () => {
   };
 
   const getRandomDate = (): string => {
-    const start = new Date(1995, 5, 16); // APOD started on June 16, 1995
+    const start = new Date(1995, 5, 16);
     const end = new Date();
     const randomDate = new Date(
       start.getTime() + Math.random() * (end.getTime() - start.getTime())
@@ -116,6 +121,11 @@ const Gallery: React.FC = () => {
                 className="w-full h-full object-cover cursor-pointer transform transition duration-500 hover:scale-105"
                 onClick={() => handleImageClick(index)}
                 loading="lazy"
+                onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+                  if (e.currentTarget) {
+                    e.currentTarget.src = "/src/assets/image/fallback_image.jpg";
+                  }
+                }}
               />
             ) : (
               <div className="w-full h-full bg-gray-200 flex items-center justify-center">

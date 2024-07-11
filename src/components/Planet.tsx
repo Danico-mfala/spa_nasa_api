@@ -41,6 +41,19 @@ const Planet: React.FC = () => {
     );
   };
 
+  const loadImage = async (url: string): Promise<string> => {
+    try {
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error("Failed to load image");
+      }
+      return url;
+    } catch (error) {
+      console.error("Error loading image:", error);
+      return "/src/assets/image/fallback_image.jpg";
+    }
+  };
+
   return (
     <div className="md:px-14 px-4 py-16 max-w-screen-2xl mx-auto" id="planet">
       <div className="text-center my-8">
@@ -84,9 +97,8 @@ const Planet: React.FC = () => {
                     src={planet.url}
                     alt={planet.title}
                     className="h-80 md:h-96 lg:h-108 xl:h-120 object-cover rounded-lg"
-                    onError={(e) => {
-                      e.target.onerror = null;
-                      e.target.src = "/src/assets/fallback_image.png";
+                    onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+                      e.currentTarget.src = "/src/assets/fallback_image.png";
                     }}
                   />
                   <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300">

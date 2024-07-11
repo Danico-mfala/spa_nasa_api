@@ -15,7 +15,7 @@ const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [isSticky, setIsSticky] = useState<boolean>(false);
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const [searchResults, setSearchResults] = useState<any[]>([]); // Adjust the type as per your actual data structure
+  const [searchResults, setSearchResults] = useState<any[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -57,15 +57,12 @@ const Navbar: React.FC = () => {
       ? selectedDate.toISOString().split("T")[0]
       : null;
 
-    const api_key = import.meta.env.VITE_NASA_API_KEY;
+    const api_key = import.meta.env.VITE_NASA_API_KEY as string;
     let apiUrl = `https://api.nasa.gov/planetary/apod?api_key=${api_key}`;
 
     if (formattedDate) {
       apiUrl += `&date=${formattedDate}`;
-    } else if (searchQuery) {
-      setError("Please enter a valid date.");
-      return;
-    } else {
+    } else if (!searchQuery) {
       setError("Please enter a search query or select a date.");
       return;
     }
@@ -76,10 +73,14 @@ const Navbar: React.FC = () => {
         throw new Error("Failed to fetch APOD data");
       }
       const data = await response.json();
-      console.log("Fetched data:", data);
-      setSearchResults([data]);
-      setError(null);
-      setIsModalOpen(true);
+      if (data.length === 0) {
+        setError("No results found.");
+        setSearchResults([]);
+      } else {
+        setSearchResults([data]);
+        setError(null);
+        setIsModalOpen(true);
+      }
     } catch (error) {
       console.error("Error fetching APOD data:", error);
       setSearchResults([]);

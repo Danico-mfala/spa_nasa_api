@@ -13,6 +13,7 @@ interface SearchResultsProps {
   onClose: () => void;
 }
 
+
 // Ensure the modal is attached to the app element
 Modal.setAppElement("#root");
 
