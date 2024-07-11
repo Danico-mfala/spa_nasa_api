@@ -98,7 +98,7 @@ const Planet: React.FC = () => {
                     alt={planet.title}
                     className="h-80 md:h-96 lg:h-108 xl:h-120 object-cover rounded-lg"
                     onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-                      e.currentTarget.src = "/src/assets/fallback_image.png";
+                      e.currentTarget.src = "/src/assets/image/fallback_image.jpg";
                     }}
                   />
                   <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300">

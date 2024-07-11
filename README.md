@@ -1,8 +1,27 @@
-# React + Vite
+# SpaceWonders: React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a web application built using React and Vite. It allows users to explore NASA's Astronomy Picture of the Day (APOD) API. With this application, you can view stunning images from space along with detailed explanations and dates.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Fast Refresh**: Utilizing Vite's Hot Module Replacement (HMR) for a smooth development experience.
+- **ESLint Integration**: Basic ESLint rules to maintain code quality.
+- **API Integration**: Fetch and display data from NASA's APOD API.
+
+## Getting Started
+
+### Prerequisites
+
+Make sure you have the following installed on your machine:
+
+- [Node.js](https://nodejs.org/) (version 14 or higher)
+- [npm](https://www.npmjs.com/) or [Yarn](https://yarnpkg.com/)
+
+### Installation
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/Danico-mfala/spa_nasa_api
+   cd spacewonders
+
+2. **Install dependencies**:

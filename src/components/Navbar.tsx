@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import logo from "../assets/image/logo.png";
 import SearchResults from "./SearchResults";
 import DatePicker from "react-datepicker";
@@ -96,6 +96,16 @@ const Navbar: React.FC = () => {
     setIsModalOpen(false);
   };
 
+  // Function to handle smooth scroll
+  const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, id: string) => {
+    e.preventDefault();
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+    toggleMenu(); // Close menu if open (for mobile view)
+  };
+
   return (
     <header
       className={`w-full ${isSticky ? "bg-white shadow-md" : "md:bg-transparent"
@@ -115,6 +125,7 @@ const Navbar: React.FC = () => {
               <a
                 href={`#${path}`}
                 key={path}
+                onClick={(e) => handleSmoothScroll(e, path)}
                 className="block text-base text-gray-900 hover:text-brandPrimary first:font-medium"
               >
                 {link}
@@ -163,8 +174,8 @@ const Navbar: React.FC = () => {
               <a
                 href={`#${path}`}
                 key={path}
+                onClick={(e) => handleSmoothScroll(e, path)}
                 className="block text-base text-white hover:text-brandPrimary first:font-medium"
-                onClick={toggleMenu}
               >
                 {link}
               </a>
