@@ -97,9 +97,14 @@ const Gallery: React.FC = () => {
 
   return (
     <div className="px-4 lg:px-14 max-w-screen-2xl mx-auto my-8" id="gallery">
-      <h2 className="text-4xl text-neutralDGrey font-semibold mb-8 items-center">
-        Gallery
-      </h2>
+      <div className="text-center my-8 mb-10">
+        <h2 className="text-4xl text-neutralDGrey font-semibold mb-2">
+          Explore Gallery
+        </h2>
+        <p className="text-neutralGrey">
+          Explore the photo gallery of our solar system's diverse worlds.
+        </p>
+      </div>
 
       {loading && <p className="text-center my-4">Loading...</p>}
 
