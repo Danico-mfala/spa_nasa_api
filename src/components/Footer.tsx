@@ -31,7 +31,7 @@ const Footer: React.FC = () => {
           </p>
           <div className="flex space-x-4">
             <a
-              href="https://facebook.com"
+              href="https://www.facebook.com/profile.php?id=100005735594141"
               className="text-gray-400 hover:text-white"
             >
               <FaFacebookF />
@@ -43,13 +43,13 @@ const Footer: React.FC = () => {
               <FaTwitter />
             </a>
             <a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/in/mfala-dan-19ab9917b/"
               className="text-gray-400 hover:text-white"
             >
               <FaLinkedinIn />
             </a>
             <a
-              href="https://github.com"
+              href="https://github.com/Danico-mfala"
               className="text-gray-400 hover:text-white"
             >
               <FaGithub />

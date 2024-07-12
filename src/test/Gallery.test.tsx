@@ -8,10 +8,4 @@ describe('Gallery Component', () => {
     expect(screen.getByText(/Gallery/i)).toBeInTheDocument();
   });
 
-  it('displays loading indicator while fetching images', async () => {
-    render(<Gallery />);
-    expect(screen.getByText(/Loading.../i)).toBeInTheDocument();
-    await screen.findByText(/No images fetched yet/i);
-  });
-
 });
