@@ -1,7 +1,16 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import { configDefaults } from "vitest/config";
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
+  define: {
+    "process.env": process.env,
+  },
+  test: {
+    environment: "jsdom",
+    globals: true,
+    setupFiles: "./src/setupTests.ts",
+    exclude: [...configDefaults.exclude, "e2e/**"],
+  },
 });
