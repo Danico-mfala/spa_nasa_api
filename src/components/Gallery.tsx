@@ -25,7 +25,7 @@ const Gallery: React.FC = () => {
   const fetchRandomNASAImages = async () => {
     try {
       setLoading(true);
-      const dates = generateRandomDates(6); // Generate 6 random dates
+      const dates = generateRandomDates(3.5); // Generate 6 random dates
       const fetchRequests = dates.map((date) =>
         fetch(
           `https://api.nasa.gov/planetary/apod?api_key=${api_key}&date=${date}`
@@ -101,7 +101,7 @@ const Gallery: React.FC = () => {
         <h2 className="text-4xl text-neutralDGrey font-semibold mb-2">
           Explore Gallery
         </h2>
-        <p className="text-neutralGrey">
+        <p className="text-neutralGrey mb-8">
           Explore the photo gallery of our solar system's diverse worlds.
         </p>
       </div>
@@ -116,7 +116,7 @@ const Gallery: React.FC = () => {
         </p>
       )}
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8">
         {images.map((image, index) => (
           <div key={index} className="relative group">
             {image.url ? (
@@ -180,7 +180,7 @@ const Gallery: React.FC = () => {
               <FaChevronLeft />
             </button>
             <button
-              className="absolute right-2 top-1/2 transform -translate-y-1/2 text-white text-2xl bg-brandPrimary rounded-full p-2"
+              className="absolute right-2 top-1/2 transform -translate-y-1/2 text-white text-2xl bg-brandPrimary opacity-[20px] rounded-full p-2"
               onClick={nextImage}
             >
               <FaChevronRight />

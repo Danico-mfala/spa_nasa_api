@@ -31,7 +31,7 @@ const Home: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-home-bg bg-cover bg-center text-white relative overflow-hidden flex items-center">
+    <div className="w-full mt-20 bg-home-bg bg-cover bg-center text-white relative overflow-hidden flex items-center">
       <div className="px-4 lg:px-14 w-full max-w-screen-2xl mx-auto relative">
         <Carousel
           showThumbs={false}

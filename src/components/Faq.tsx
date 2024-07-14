@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { SlArrowDown, SlArrowUp } from "react-icons/sl";
 
 const apiKey = import.meta.env.VITE_NASA_API_KEY;
 
@@ -46,7 +47,7 @@ const FAQ = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-8">
+    <div className="flex flex-col items-center justify-center m-[100px]">
       <h2 className="text-3xl font-semibold text-gray-800 mb-6" id="faq">
         Frequently Asked Questions
       </h2>
@@ -63,12 +64,12 @@ const FAQ = () => {
               <div key={item.id} className="faq-item ">
                 <button
                   onClick={() => handleToggle(item.id)}
-                  className="flex justify-between w-full px-4 py-2 text-left bg-gray-200 rounded-lg hover:bg-gray-300 focus:outline-none"
+                  className="flex justify-between w-full h-[50px] px-4 py-2 text-left bg-gray-200 rounded-lg hover:bg-gray-300 focus:outline-none"
                 >
                   <span className="text-lg font-semibold text-gray-700">
                     {item.question}
                   </span>
-                  <span>{item.open ? "-" : "+"}</span>
+                  <span className="text-brandPrimary">{item.open ? <SlArrowUp size={23} /> : <SlArrowDown size={23} />}</span>
                 </button>
                 {item.open && (
                   <div className="p-4 mt-5 rounded-lg bg-gray-100">

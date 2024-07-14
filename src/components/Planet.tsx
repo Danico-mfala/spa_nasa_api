@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import axios from "axios";
-import "../Planet.css";
+import "../assets/css/Planet.css";
 
 const api_key: string = import.meta.env.VITE_NASA_API_KEY as string;
 
@@ -35,32 +35,15 @@ const Planet: React.FC = () => {
     fetchPlanets();
   }, []);
 
-  const handleCardFlip = (index: number) => {
-    setFlippedIndex((prevState) =>
-      prevState === index ? null : index
-    );
-  };
 
-  const loadImage = async (url: string): Promise<string> => {
-    try {
-      const response = await fetch(url);
-      if (!response.ok) {
-        throw new Error("Failed to load image");
-      }
-      return url;
-    } catch (error) {
-      console.error("Error loading image:", error);
-      return "/src/assets/image/fallback_image.jpg";
-    }
-  };
 
   return (
-    <div className="md:px-14 px-4 py-16 max-w-screen-2xl mx-auto" id="planet">
+    <div className="md:px-14 px-4 py-16 mx-auto bg-[#EBF4F6] mt-[100px] mb-[100px]" id="planet">
       <div className="text-center my-8">
         <h2 className="text-4xl text-neutralDGrey font-semibold mb-2">
           Explore Planets
         </h2>
-        <p className="text-neutralGrey">
+        <p className="text-neutralGrey mt-5">
           Discover the diverse worlds of our solar system, from the majestic gas
           giants to the rocky
         </p>
@@ -86,7 +69,7 @@ const Planet: React.FC = () => {
               centerMode
               centerSlidePercentage={25}
               emulateTouch
-              className="gap-12"
+
             >
               {planets.map((planet, index) => (
                 <div

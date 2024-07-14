@@ -8,10 +8,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 150px;
-    /* Adjust the height as needed */
-    padding: 0 10px;
-    /* Add padding between slides */
 }
 
 .modal-overlay {
@@ -28,7 +24,6 @@ body {
 
 .modal-content {
     position: relative;
-
     border-radius: 0.5rem;
     padding: 1.5rem;
 }

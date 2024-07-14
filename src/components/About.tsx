@@ -59,10 +59,10 @@ const About: React.FC = () => {
   }, []);
 
   return (
-    <div className="px-4 lg:px-14 max-w-screen-2xl mx-auto my-8">
+    <div className="px-4 lg:px-14 max-w-screen-2xl mx-auto my-8 mb-10">
       {/* About text */}
       <div className="md:w-11/12 mx-auto flex flex-col md:flex-row justify-between items-center gap-12" id="about">
-        <div className="md:w-2/5 relative mt-16">
+        <div className="md:w-3/5 relative mt-16">
           <img
             ref={imageRef}
             src={aboutImg}
@@ -90,7 +90,7 @@ const About: React.FC = () => {
         <p className="text-center text-red-500 mt-10">Failed to load APOD data. Please try again later.</p>
       )}
       {apodData && (
-        <div className="md:w-11/12 mx-auto flex flex-col md:flex-row justify-between items-center gap-12 mt-16">
+        <div className="md:w-11/12 mx-auto flex flex-col md:flex-row justify-between items-center gap-12 mt-[100px]">
           <div className="md:w-3/5 mx-auto">
             <h2 className="text-4xl text-brandPrimary font-semibold mb-4 md:w-4/5">Astronomy Picture of the Day</h2>
             <h4 className="mb-5 text-1xl font-semibold">{apodData.title}</h4>
@@ -109,16 +109,16 @@ const About: React.FC = () => {
         </div>
       )}
 
-      <div className=" text-white py-full mt-20 w-full h-89 flex flex-col md:flex-row justify-between items-center gap-9 rounded-lg overflow-hidden">
-        <div className="md:w-2/5 mx-auto">
-          <h2 className="text-4xl text-brandPrimary font-semibold mb-4 md:w-4/5">Video Astronomy</h2>
-          <h2 className="text-5xl font-semibold mb-4 ">Explore More</h2>
+      <div className=" text-white py-full mt-20  w-full h-89 flex flex-col md:flex-row justify-between items-center gap-9 rounded-lg overflow-hidden">
+        <div className="md:w-2/3 mx-auto">
+          <h2 className="text-4xl text-brandPrimary font-semibold md:w-4/5">Video Astronomy</h2>
+          <h2 className="text-5xl font-semibold mb-4 text-neutralDGrey">Explore More</h2>
           <p className="text-sm mb-8 text-gray-600">
             Check out this fascinating video that dives deeper into the wonders of space exploration and the incredible images captured by NASA.
             Join us as we explore the mysteries of the universe!
           </p>
         </div>
-        <div className="md:w-3/5">
+        <div className="md:w-2/3">
           <iframe
             width="100%"
             height="415"
