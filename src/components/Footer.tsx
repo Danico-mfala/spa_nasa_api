@@ -45,28 +45,28 @@ const Footer: React.FC = () => {
             <div className="flex space-x-4 mb-4 md:mb-0">
               <a
                 href="https://www.facebook.com/profile.php?id=100005735594141"
-                className="text-gray-400 hover:text-white transition duration-200"
+                className="text-gray-400 hover:text-brandPrimary transition duration-200"
                 aria-label="Facebook"
               >
                 <FaFacebookF />
               </a>
               <a
                 href="https://x.com/mfaladan"
-                className="text-gray-400 hover:text-white transition duration-200"
+                className="text-gray-400 hover:text-brandPrimary transition duration-200"
                 aria-label="Twitter"
               >
                 <FaTwitter />
               </a>
               <a
                 href="https://www.linkedin.com/in/mfala-dan-19ab9917b/"
-                className="text-gray-400 hover:text-white transition duration-200"
+                className="text-gray-400 hover:text-brandPrimary transition duration-200"
                 aria-label="LinkedIn"
               >
                 <FaLinkedinIn />
               </a>
               <a
                 href="https://github.com/Danico-mfala"
-                className="text-gray-400 hover:text-white transition duration-200"
+                className="text-gray-400 hover:text-brandPrimary transition duration-200"
                 aria-label="GitHub"
               >
                 <FaGithub />
@@ -76,31 +76,31 @@ const Footer: React.FC = () => {
             <nav className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4">
               <button
                 onClick={() => scrollToSection("about")}
-                className="text-gray-400 hover:text-white transition duration-200"
+                className="text-gray-400 hover:text-brandPrimary transition duration-200"
               >
                 About Us
               </button>
               <button
                 onClick={() => scrollToSection("gallery")}
-                className="text-gray-400 hover:text-white transition duration-200"
+                className="text-gray-400 hover:text-brandPrimary transition duration-200"
               >
                 Gallery
               </button>
               <button
                 onClick={() => scrollToSection("planet")}
-                className="text-gray-400 hover:text-white transition duration-200"
+                className="text-gray-400 hover:text-brandPrimary transition duration-200"
               >
                 Planet
               </button>
               <button
                 onClick={() => scrollToSection("faq")}
-                className="text-gray-400 hover:text-white transition duration-200"
+                className="text-gray-400 hover:text-brandPrimary transition duration-200"
               >
                 Faq
               </button>
               <button
                 onClick={() => scrollToSection("home")}
-                className="text-gray-400 hover:text-white transition duration-200"
+                className="text-gray-400 hover:text-brandPrimary transition duration-200"
               >
                 Home
               </button>
