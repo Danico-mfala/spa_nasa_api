@@ -1,0 +1,15 @@
+.cursor {
+    animation: blink 0.7s steps(1) infinite;
+}
+
+@keyframes blink {
+
+    from,
+    to {
+        border-color: transparent;
+    }
+
+    50% {
+        border-color: orange;
+    }
+}

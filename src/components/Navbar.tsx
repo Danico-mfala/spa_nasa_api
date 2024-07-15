@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../assets/image/logo.png";
 import SearchResults from "./SearchResults";
 import DatePicker from "react-datepicker";
@@ -108,17 +108,18 @@ const Navbar: React.FC = () => {
 
   return (
     <header
-      className={`w-full ${isSticky ? "bg-white shadow-md" : "md:bg-transparent"
+      className={`w-full ${isSticky ? "bg-white shadow-md text-black" : "bg-gray-900 text-white"
         } fixed top-0 left-0 right-0 z-50`}
     >
       <div className="flex justify-between items-center text-base gap-8">
         <nav className="container mx-auto flex justify-between items-center p-4">
           <a
             href="#"
-            className="text-2xl font-semibold flex items-center space-x-3"
+            className={`text-2xl font-semibold flex items-center space-x-3 ${isSticky ? "text-black" : "text-white"
+              }`}
           >
             <img src={logo} alt="logo" className="w-10 inline-block" />
-            <span className="text-[#263238]">SpaceWonders</span>
+            <span>Spa</span>
           </a>
           <ul className="md:flex space-x-12 hidden">
             {navItems.map(({ link, path }) => (
@@ -126,7 +127,8 @@ const Navbar: React.FC = () => {
                 href={`#${path}`}
                 key={path}
                 onClick={(e) => handleSmoothScroll(e, path)}
-                className="block text-base text-gray-900 hover:text-brandPrimary first:font-medium"
+                className={`block text-base ${isSticky ? "text-black" : "text-white"
+                  } hover:text-brandPrimary`}
               >
                 {link}
               </a>
@@ -135,10 +137,11 @@ const Navbar: React.FC = () => {
           <div className="md:hidden">
             <button
               onClick={toggleMenu}
-              className="text-neutralDGrey focus:outline-none focus:text-gray-500"
+              className={`text-brandPrimary focus:outline-none ${isSticky ? "text-black" : "text-white"
+                }`}
             >
               {isMenuOpen ? (
-                <FaTimes className="h-6 w-6 text-neutralDGrey" />
+                <FaTimes className="h-6 w-6" />
               ) : (
                 <FaBars className="h-6 w-6" />
               )}
@@ -169,36 +172,34 @@ const Navbar: React.FC = () => {
       </div>
       {isMenuOpen && (
         <ul className="md:hidden flex flex-col space-y-4 p-4">
-          <div className={`space-y-4 px-4 mt-10 py-7 bg-brandPrimary`}>
-            {navItems.map(({ link, path }) => (
-              <a
-                href={`#${path}`}
-                key={path}
-                onClick={(e) => handleSmoothScroll(e, path)}
-                className="block text-base text-white hover:text-brandPrimary first:font-medium"
-              >
-                {link}
-              </a>
-            ))}
-            <form
-              onSubmit={handleSearchSubmit}
-              className="flex flex-col space-y-2"
+          {navItems.map(({ link, path }) => (
+            <a
+              href={`#${path}`}
+              key={path}
+              onClick={(e) => handleSmoothScroll(e, path)}
+              className="block text-base text-white hover:text-brandPrimary"
             >
-              <DatePicker
-                selected={selectedDate}
-                onChange={handleDateChange}
-                dateFormat="yyyy-MM-dd"
-                placeholderText="Select Date"
-                className="py-2 px-4 h-full w-full rounded bg-gray-200 text-gray-900 focus:outline-none focus:bg-white focus:shadow-md transition-all duration-300"
-              />
-              <button
-                type="submit"
-                className="bg-neutralDGrey gap-1 flex items-center justify-center  text-white py-2 px-4 rounded-lg transition duration-300 hover:bg-gray-900"
-              >
-                Search <MdOutlineSearch size={18} />
-              </button>
-            </form>
-          </div>
+              {link}
+            </a>
+          ))}
+          <form
+            onSubmit={handleSearchSubmit}
+            className="flex flex-col space-y-2"
+          >
+            <DatePicker
+              selected={selectedDate}
+              onChange={handleDateChange}
+              dateFormat="yyyy-MM-dd"
+              placeholderText="Select Date"
+              className="py-2 px-4 h-full w-full rounded bg-gray-200 text-gray-900 focus:outline-none focus:bg-white focus:shadow-md transition-all duration-300"
+            />
+            <button
+              type="submit"
+              className="bg-neutralDGrey gap-1 flex items-center justify-center  text-white py-2 px-4 rounded-lg transition duration-300 hover:bg-gray-900"
+            >
+              Search <MdOutlineSearch size={18} />
+            </button>
+          </form>
         </ul>
       )}
       {error && <p className="text-red-500 text-center mt-4">{error}</p>}

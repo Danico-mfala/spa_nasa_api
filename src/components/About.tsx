@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
 import aboutImg from "../assets/image/about.jpg";
-import "../About.css";
+import "../assets/css/About.css";
 
 const api_key: string = import.meta.env.VITE_NASA_API_KEY as string;
 
@@ -17,6 +17,7 @@ const About: React.FC = () => {
   const [apodData, setApodData] = useState<ApodData | null>(null);
   const [loadingAPOD, setLoadingAPOD] = useState(true);
   const [errorAPOD, setErrorAPOD] = useState(false);
+  const [isApodImageLoaded, setIsApodImageLoaded] = useState(false);
 
   useEffect(() => {
     const fetchAPODData = async () => {
@@ -103,7 +104,8 @@ const About: React.FC = () => {
             <img
               src={apodData.url}
               alt={apodData.title}
-              className="apod-image rounded-lg shadow-md transition duration-300 transform"
+              onLoad={() => setIsApodImageLoaded(true)}
+              className={`apod-image rounded-lg shadow-md transition duration-300 transform ${isApodImageLoaded ? "loaded" : ""}`}
             />
           </div>
         </div>
