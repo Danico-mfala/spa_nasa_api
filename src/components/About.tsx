@@ -136,19 +136,19 @@ const About: React.FC = () => {
         </div>
       )}
 
-      <div className=" text-white py-full mt-20  w-full h-89 flex flex-col md:flex-row justify-between items-center gap-9 rounded-lg overflow-hidden">
-        <div className="md:w-2/3 mx-auto">
-          <h2 className="text-4xl text-brandPrimary font-semibold md:w-4/5">Video Astronomy</h2>
-          <h2 className="text-5xl font-semibold mb-4 text-neutralDGrey">Explore More</h2>
-          <p className="text-sm mb-8 text-gray-600">
+      <div className="text-white py-full  mt-32 w-full  flex flex-col md:flex-row justify-between items-center rounded-lg overflow-hidden">
+        <div className="md:w-6/9 mx-auto">
+          <h2 className="text-6xl text-brandPrimary font-semibold md:w-4/5">Video Astronomy</h2>
+          <h2 className="text-5xl font-semibold mb-4 text-neutralDGrey mt-4">Explore More</h2>
+          <p className="text-sm md:w-4/5 mb-8 text-gray-600">
             Check out this fascinating video that dives deeper into the wonders of space exploration and the incredible images captured by NASA.
             Join us as we explore the mysteries of the universe!
           </p>
         </div>
-        <div className="md:w-2/3">
+        <div className="md:w-9/12">
           <iframe
             width="100%"
-            height="415"
+            height="400"
             src="https://www.youtube.com/embed/ubBzcSD8G8k?si=rrk21g_7Ex-7vku6"
             title="YouTube video player"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

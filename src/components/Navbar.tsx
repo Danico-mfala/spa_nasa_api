@@ -5,6 +5,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { FaTimes, FaBars } from "react-icons/fa";
 import { MdOutlineSearch } from "react-icons/md";
+import "../assets/css/Navbar.css";
 
 interface NavItem {
   link: string;
@@ -151,20 +152,20 @@ const Navbar: React.FC = () => {
           <div className="hidden lg:flex items-center space-x-4">
             <form
               onSubmit={handleSearchSubmit}
-              className="flex items-center space-x-2"
+              className="flex items-center bg-gray-200 rounded-full p-2 transition duration-300 focus-within:bg-white focus-within:shadow-md"
             >
               <DatePicker
                 selected={selectedDate}
                 onChange={handleDateChange}
                 dateFormat="yyyy-MM-dd"
                 placeholderText="Select Date"
-                className="py-2 px-4 rounded bg-gray-200 text-gray-900 focus:outline-none focus:bg-white focus:shadow-md transition-all duration-300"
+                className="bg-transparent outline-none text-gray-900 px-2 border-none"
               />
               <button
                 type="submit"
-                className="bg-brandPrimary flex gap-1 text-white py-2 px-4 rounded-lg transition duration-300 hover:bg-gray-900"
+                className="bg-brandPrimary text-white rounded-full p-2 ml-2 transition duration-300 hover:bg-gray-900"
               >
-                Search <MdOutlineSearch size={18} />
+                <MdOutlineSearch size={18} />
               </button>
             </form>
           </div>
@@ -181,23 +182,22 @@ const Navbar: React.FC = () => {
             >
               {link}
             </a>
-          ))}
-          <form
+          ))} <form
             onSubmit={handleSearchSubmit}
-            className="flex flex-col space-y-2"
+            className="flex items-center bg-gray-200 rounded-full p-2 transition duration-300  focus-within:shadow-md"
           >
             <DatePicker
               selected={selectedDate}
               onChange={handleDateChange}
               dateFormat="yyyy-MM-dd"
               placeholderText="Select Date"
-              className="py-2 px-4 h-full w-full rounded bg-gray-200 text-gray-900 focus:outline-none focus:bg-white focus:shadow-md transition-all duration-300"
+              className="bg-transparent outline-none text-gray-900 px-2 border-none"
             />
             <button
               type="submit"
-              className="bg-neutralDGrey gap-1 flex items-center justify-center  text-white py-2 px-4 rounded-lg transition duration-300 hover:bg-gray-900"
+              className="bg-brandPrimary text-white rounded-full p-2 transition duration-300 hover:bg-gray-900"
             >
-              Search <MdOutlineSearch size={18} />
+              <MdOutlineSearch size={18} />
             </button>
           </form>
         </ul>
