@@ -18,7 +18,7 @@ const FAQ = () => {
           throw new Error("Failed to fetch FAQ");
         }
         const data = await response.json();
-        const faqItems = data.map((item: { date: any; explanation: any; }) => ({
+        const faqItems = data.map((item: { date: any; explanation: any }) => ({
           id: item.date,
           question: `What is the Astronomy Picture of the Day on ${item.date}?`,
           answer: item.explanation,
@@ -47,11 +47,11 @@ const FAQ = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center m-[100px]">
-      <h2 className="text-3xl font-semibold text-gray-800 mb-6" id="faq">
+    <div className="flex flex-col items-center justify-center px-4 py-8 lg:py-12 lg:px-6 mx-auto">
+      <h2 className="text-2xl lg:text-3xl font-semibold text-gray-800 mb-6" id="faq">
         Frequently Asked Questions
       </h2>
-      <div className="w-full max-w-4xl p-8 rounded-lg">
+      <div className="w-full max-w-4xl p-4 lg:p-8 rounded-lg">
         {loading && <p className="text-center">Loading...</p>}
         {error && (
           <p className="text-center text-red-500">
@@ -61,18 +61,20 @@ const FAQ = () => {
         {!loading && !error && (
           <div className="space-y-4">
             {faqData.map((item) => (
-              <div key={item.id} className="faq-item ">
+              <div key={item.id} className="faq-item">
                 <button
                   onClick={() => handleToggle(item.id)}
-                  className="flex justify-between w-full h-[50px] px-4 py-2 text-left bg-gray-200 rounded-lg hover:bg-gray-300 focus:outline-none"
+                  className="flex justify-between w-full px-4 py-2 text-left bg-gray-200 rounded-lg hover:bg-gray-300 focus:outline-none"
                 >
                   <span className="text-lg font-semibold text-gray-700">
                     {item.question}
                   </span>
-                  <span className="text-brandPrimary">{item.open ? <SlArrowUp size={23} /> : <SlArrowDown size={23} />}</span>
+                  <span className="text-brandPrimary">
+                    {item.open ? <SlArrowUp size={23} /> : <SlArrowDown size={23} />}
+                  </span>
                 </button>
                 {item.open && (
-                  <div className="p-4 mt-5 rounded-lg bg-gray-100">
+                  <div className="p-4 mt-2 rounded-lg bg-gray-100">
                     <p className="text-gray-600">{item.answer}</p>
                   </div>
                 )}

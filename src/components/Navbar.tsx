@@ -171,7 +171,7 @@ const Navbar: React.FC = () => {
         </nav>
       </div>
       {isMenuOpen && (
-        <ul className="md:hidden flex flex-col space-y-4 p-4">
+        <ul className="md:hidden bg-brandPrimary flex flex-col space-y-4 p-4">
           {navItems.map(({ link, path }) => (
             <a
               href={`#${path}`}

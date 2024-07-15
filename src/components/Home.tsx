@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import banner_1 from "../assets/image/banner_1.jpg";
 import "../assets/css/Home.css";
 import Typewriter from "../components/Typewriter";
+import { GiAtom, GiAtomicSlashes } from "react-icons/gi";
 
 import { TfiBarChart, TfiBarChartAlt } from "react-icons/tfi";
 
@@ -70,24 +71,19 @@ const Home: React.FC = () => {
               Dive into the wonders of the cosmos daily with SpaceWonders and
               NASA's Astronomy Picture of the Day.
             </p>
-            <div className="flex justify-start gap-10 mt-20">
+            <div className="flex justify-center lg:justify-start gap-10 mt-20">
               <div className="text-center mx-4">
-                <TfiBarChart
-                  className="text-4xl text-brandPrimary mb-2"
-                  size={50}
-                />
+                <GiAtomicSlashes className="text-4xl text-brandPrimary mb-2" size={50} />
                 <p className="text-2xl text-brandPrimary font-bold">{count1}</p>
                 <p className="text-base text-white">Images</p>
               </div>
               <div className="text-center mx-4">
-                <TfiBarChartAlt
-                  className="text-4xl text-brandPrimary mb-2"
-                  size={50}
-                />
+                <GiAtom className="text-4xl text-brandPrimary mb-2" size={50} />
                 <p className="text-2xl text-brandPrimary font-bold">{count2}</p>
                 <p className="text-base text-white">Stories</p>
               </div>
             </div>
+
           </div>
 
           <div className="w-full md:w-1/2 relative">

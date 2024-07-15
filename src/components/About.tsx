@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
 import aboutImg from "../assets/image/about.jpg";
+import { motion, useAnimation } from "framer-motion";
 import "../assets/css/About.css";
 
 const api_key: string = import.meta.env.VITE_NASA_API_KEY as string;
@@ -18,6 +19,7 @@ const About: React.FC = () => {
   const [loadingAPOD, setLoadingAPOD] = useState(true);
   const [errorAPOD, setErrorAPOD] = useState(false);
   const [isApodImageLoaded, setIsApodImageLoaded] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
     const fetchAPODData = async () => {
@@ -43,6 +45,7 @@ const About: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
+      setScrollY(window.scrollY);
       const element = imageRef.current;
       if (element) {
         const rect = element.getBoundingClientRect();
@@ -59,18 +62,40 @@ const About: React.FC = () => {
     };
   }, []);
 
+  const imageControls = useAnimation();
+
+  useEffect(() => {
+    if (isImageVisible) {
+      imageControls.start({
+        opacity: 1.1,
+        y: 0,
+        transition: {
+          duration: 0.5,
+        },
+      });
+    } else {
+      imageControls.start({
+        opacity: 1,
+        y: 75,
+        transition: {
+          duration: 0.5,
+        },
+      });
+    }
+  }, [isImageVisible, imageControls]);
+
   return (
     <div className="px-4 lg:px-14 max-w-screen-2xl mx-auto my-8 mb-10">
       {/* About text */}
       <div className="md:w-11/12 mx-auto flex flex-col md:flex-row justify-between items-center gap-12" id="about">
-        <div className="md:w-3/5 relative mt-16">
+        <motion.div className="md:w-3/5 relative mt-16" animate={imageControls}>
           <img
             ref={imageRef}
             src={aboutImg}
             alt="About"
-            className={`about-image rounded-lg shadow-md transition duration-300 transform ${isImageVisible ? "scale-105" : ""}`}
+            className={`about-image rounded-lg shadow-md transition duration-300 transform`}
           />
-        </div>
+        </motion.div>
         <div className="md:w-3/5 mx-auto">
           <h2 className="text-4xl text-brandPrimary font-semibold mb-4 md:w-4/5">About</h2>
           <p className="text-sm text-gray-600 mb-8">

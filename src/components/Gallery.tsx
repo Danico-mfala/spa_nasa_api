@@ -25,7 +25,7 @@ const Gallery: React.FC = () => {
   const fetchRandomNASAImages = async () => {
     try {
       setLoading(true);
-      const dates = generateRandomDates(3.5); // Generate 6 random dates
+      const dates = generateRandomDates(6); // Generate 6 random dates
       const fetchRequests = dates.map((date) =>
         fetch(
           `https://api.nasa.gov/planetary/apod?api_key=${api_key}&date=${date}`
