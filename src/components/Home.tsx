@@ -75,12 +75,12 @@ const Home: React.FC = () => {
               <div className="text-center mx-4">
                 <GiAtomicSlashes className="text-4xl text-brandPrimary mb-2" size={50} />
                 <p className="text-2xl text-brandPrimary font-bold">{count1}</p>
-                <p className="text-base text-white">Images</p>
+                <p className="text-base text-white">Cosmos</p>
               </div>
               <div className="text-center mx-4">
                 <GiAtom className="text-4xl text-brandPrimary mb-2" size={50} />
                 <p className="text-2xl text-brandPrimary font-bold">{count2}</p>
-                <p className="text-base text-white">Stories</p>
+                <p className="text-base text-white">Galaxies</p>
               </div>
             </div>
 
