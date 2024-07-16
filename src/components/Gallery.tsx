@@ -111,7 +111,7 @@ const Gallery: React.FC = () => {
       {error && <p className="text-center text-red-500">{error}</p>}
 
       {images.length === 0 && !loading && (
-        <p className="text-center text-gray-500">
+        <p className="text-center text-red-500">
           No images fetched yet. Please try again later.
         </p>
       )}
@@ -123,7 +123,7 @@ const Gallery: React.FC = () => {
               <img
                 src={image.url}
                 alt={`APOD Image ${index + 1}`}
-                className="w-full h-full object-cover cursor-pointer transform transition duration-500 hover:scale-105"
+                className="w-full h-full object-cover rounded-lg cursor-pointer transform transition duration-500 hover:scale-105"
                 onClick={() => handleImageClick(index)}
                 loading="lazy"
                 onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
@@ -134,7 +134,7 @@ const Gallery: React.FC = () => {
               />
             ) : (
               <div className="w-full h-full bg-gray-200 flex items-center justify-center">
-                <p className="text-gray-600">No Image Available</p>
+                <p className="text-red-600">No Image Available</p>
               </div>
             )}
             <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -162,7 +162,7 @@ const Gallery: React.FC = () => {
                 />
               ) : (
                 <div className="w-full h-full bg-gray-200 flex items-center justify-center">
-                  <p className="text-gray-600">No Image Available</p>
+                  <p className="text-red-600">No Image Available</p>
                 </div>
               )}
             </div>
