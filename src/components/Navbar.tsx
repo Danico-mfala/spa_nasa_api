@@ -159,7 +159,7 @@ const Navbar: React.FC = () => {
                 onChange={handleDateChange}
                 dateFormat="yyyy-MM-dd"
                 placeholderText="Select Date"
-                className="bg-transparent outline-none text-gray-900 px-2 border-none"
+                className="bg-transparent outline-none text-gray-900 px-2 border-none focus:ring-0 focus:ring-offset-0"
               />
               <button
                 type="submit"

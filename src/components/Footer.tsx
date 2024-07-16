@@ -18,15 +18,18 @@ const Footer: React.FC = () => {
             <span className="text-brandPrimary">Subscribe to Our</span> Newsletter
           </h1>
 
-          <div className="flex items-center">
+          <div className="flex items-center bg-gray-200 rounded-full p-2 transition duration-300 focus-within:bg-white focus-within:shadow-md">
             <input
               type="text"
               placeholder="Enter your email"
-              className="text-gray-800 sm:w-72 w-full sm:mr-5 mr-1 lg:mb-0 mb-4 py-2.5 rounded px-2 focus:outline-none"
+              className="bg-gray-200  outline-none text-gray-900 border-none focus:ring-0 focus:ring-offset-0"
             />
-            <button className="bg-brandPrimary text-white py-2.5 px-5 rounded hover:bg-brandSecondary transition duration-200">
-              <IoMdSend />
+            <button className="bg-brandPrimary text-white rounded-full p-2 ml-2 transition duration-300 hover:bg-gray-900">
+              <IoMdSend size={18} />
             </button>
+
+
+
           </div>
         </div>
 
