@@ -37,7 +37,7 @@ const Home: React.FC = () => {
     ) => {
       const intervalId = setInterval(() => {
         setter((prevCount) => {
-          const newCount = prevCount + 1;
+          const newCount = prevCount + 4;
           if (newCount >= stopNumber) {
             clearInterval(intervalId); // Stop counting
             return stopNumber;

@@ -27,9 +27,6 @@ const Footer: React.FC = () => {
             <button className="bg-brandPrimary text-white rounded-full p-2 ml-2 transition duration-300 hover:bg-gray-900">
               <IoMdSend size={18} />
             </button>
-
-
-
           </div>
         </div>
 
